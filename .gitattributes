@@ -1,0 +1,5 @@
+# Mac 端脚本必须是 LF，否则双击直接报错（\r 会被当成命令的一部分）
+* text=auto eol=lf
+*.command text eol=lf
+*.sh text eol=lf
+*.png binary
