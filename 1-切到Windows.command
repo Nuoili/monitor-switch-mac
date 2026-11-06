@@ -10,11 +10,17 @@ find_m1ddc() {
   command -v m1ddc 2>/dev/null
 }
 
+DIR="$(cd "$(dirname "$0")" && pwd)"
+VERSION="$(cat "$DIR/VERSION" 2>/dev/null | tr -d '[:space:]')"
+[ -z "$VERSION" ] && VERSION="?"
+
 M1DDC="$(find_m1ddc)"
 
 if [ -z "$M1DDC" ]; then
   osascript -e 'display dialog "没有找到 m1ddc。请先双击运行「0-安装m1ddc.command」。" buttons {"好"} default button 1 with icon caution'
   exit 1
 fi
+
+echo "显示器切换 · Mac 端 v$VERSION → DisplayPort (15)"
 
 "$M1DDC" set input 15

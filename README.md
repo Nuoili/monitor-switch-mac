@@ -1,5 +1,7 @@
 # 显示器切换 · Mac 端
 
+**v2.3.0** — 与 Windows 端 [monitor-switch-win](https://github.com/Nuoili/monitor-switch-win) 同号发布，两端版本号必须保持一致（见仓库根 `VERSION` 文件）。
+
 同一台显示器接 Windows 主机和 MacBook，在 Mac 上一键把信号源切过去（或切回来），不用按显示器背面的按钮。
 
 - 走 [`m1ddc`](https://github.com/waydabber/m1ddc) 发 DDC/CI 指令（VCP `0x60` 写输入源）。
@@ -31,16 +33,33 @@ open .
 | `4-保持Mac唤醒.command` | `caffeinate -d -i -s` 常驻，禁止关屏和空闲睡眠，Mac 持续往 HDMI 送信号 |
 | `5-取消保持唤醒.command` | 一键卸载，恢复原样 |
 | `6-安装唤醒监听.command` | 装 LaunchAgent：监听 UDP 9998，收到 Windows 的 `WAKE` 就重放一次显示配置 |
-| `7-卸载唤醒监听.command` | 卸载监听 |
+| `7-卸载唤醒监听.command` | 只卸载监听 |
+| `8-卸载全部.command` | **完整卸载**：三个 LaunchAgent + `~/.monswitch` 一起清掉，m1ddc 单独询问（默认保留） |
 
 ## 目录
 
 ```
-0..7-*.command          一键脚本（安装 / 切换 / 自启 / 保持唤醒 / 唤醒监听）
+0..8-*.command          一键脚本（安装 / 切换 / 自启 / 保持唤醒 / 唤醒监听 / 卸载）
+VERSION                 版本号，与 Windows 仓同号
+CHANGELOG.md            版本变更记录
 diagnose.py             体检脚本：读显示器、查 DDC、看 pmset、盯显示配置变化
 mac_wake_listener.py    唤醒监听本体（LaunchAgent 常驻）
 Mac端-HDMI黑屏修复.md    黑屏排查手册 + 三套方案
 ```
+
+## 卸载
+
+双击 `8-卸载全部.command`，一键清干净：
+
+| 清除项 | 说明 |
+|---|---|
+| `~/Library/LaunchAgents/com.monswitch.autostart.plist` | 登录后自动切 HDMI |
+| `~/Library/LaunchAgents/com.monswitch.awake.plist` | `caffeinate` 保持唤醒 |
+| `~/Library/LaunchAgents/com.monswitch.wakelistener.plist` | UDP 9998 唤醒监听 |
+| `~/.monswitch/` | 配置、stdout / stderr 日志 |
+| `m1ddc` | 单独弹窗询问，默认**保留**（只是个发 DDC 命令的小工具） |
+
+脚本不会删自己所在的文件夹——卸载完把仓库目录拖进废纸篓即可。
 
 ## 体检脚本
 
