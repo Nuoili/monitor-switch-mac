@@ -47,6 +47,17 @@ mac_wake_listener.py    唤醒监听本体（LaunchAgent 常驻）
 Mac端-HDMI黑屏修复.md    黑屏排查手册 + 三套方案
 ```
 
+## macOS .app 分发包
+
+`.command` 脚本够用，但想要一个躺在「应用程序」里的图标版本，用 `dist/` 里的 zip：
+
+```bash
+python packaging/build_app.py     # 在 Windows/Linux 上也能打包，不需要 Mac
+```
+
+产物 `dist/显示器切换-macOS-v2.3.0.zip`：解压得到 `显示器切换.app`（已含图标与版本号）
++ `使用说明.txt`。打包细节见 [`packaging/README.md`](packaging/README.md)。
+
 ## 卸载
 
 双击 `8-卸载全部.command`，一键清干净：
