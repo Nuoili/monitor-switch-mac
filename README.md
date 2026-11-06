@@ -1,6 +1,7 @@
 # 显示器切换 · Mac 端
 
-**v2.3.0** — 与 Windows 端 [monitor-switch-win](https://github.com/Nuoili/monitor-switch-win) 同号发布，两端版本号必须保持一致（见仓库根 `VERSION` 文件）。
+**v2.3.1** — 与 Windows 端 [monitor-switch-win](https://github.com/Nuoili/monitor-switch-win) 同号发布，两端版本号必须保持一致（见仓库根 `VERSION` 文件）。
+本版 Mac 端无功能变化，仅跟随同号；Windows 端新增全局热键。
 
 同一台显示器接 Windows 主机和 MacBook，在 Mac 上一键把信号源切过去（或切回来），不用按显示器背面的按钮。
 
@@ -55,7 +56,7 @@ Mac端-HDMI黑屏修复.md    黑屏排查手册 + 三套方案
 python packaging/build_app.py     # 在 Windows/Linux 上也能打包，不需要 Mac
 ```
 
-产物 `dist/显示器切换-macOS-v2.3.0.zip`：解压得到 `显示器切换.app`（已含图标与版本号）
+产物 `dist/显示器切换-macOS-v2.3.1.zip`：解压得到 `显示器切换.app`（已含图标与版本号）
 + `使用说明.txt`。打包细节见 [`packaging/README.md`](packaging/README.md)。
 
 ## 卸载

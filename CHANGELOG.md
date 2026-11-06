@@ -4,6 +4,23 @@
 版本号的唯一源头是本仓库根目录的 `VERSION` 文件，Windows 端的源头是
 `源码/monitor_switch_gui.py` 的 `APP_VERSION`——两边必须写同一个数，否则视为发版未完成。
 
+## v2.3.1 — 2026-11-06
+
+Mac 端无功能变化，仅跟随 Windows 端同号，保持双端一致。
+
+**Windows 端本版的实质变化**（详见 monitor-switch-win 的 CHANGELOG）
+- 新增全局热键 `Ctrl+Alt+Shift+D`：按一下切走、再按一下切回来，不弹窗口。
+  内置 5 个候选按序注册，被占用自动顺延；`--hotkey` / `--set-hotkey` / `--no-hotkey` 可查可改可停用。
+- 热键配置存 `HKCU\Software\MonitorSwitch\Hotkey`，卸载器一并清理。
+
+**本仓库**
+- `VERSION` 提到 `2.3.1`，`.app` 分发包随之打到 `dist/显示器切换-macOS-v2.3.1.zip`。
+
+**为什么 Mac 端不做热键**
+macOS 上全局快捷键需要辅助功能权限，且切换本身是双击 `.command` 或 `.app` 就完成的事，
+再加一层系统级权限申请不划算。真要一键，用「系统设置 → 键盘 → 快捷键」或
+BetterTouchTool 绑到 `1-切到Windows.command` 上更省事。
+
 ## v2.3.0 — 2026-11-06
 
 双端对齐版本，Mac 端首次对外标注版本号。
